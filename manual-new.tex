@@ -53,7 +53,7 @@
 	Maren Hempel\\
 	\texttt{maren551@gmail.com}\\[5pt]
      R\'egis~Lachaume\\
-	\texttt{regis.lechaume@gmail.com.cl}\\[5pt]
+	\texttt{regis.lechaume@gmail.com}\\[5pt]
     Rodolfo~Angeloni\\[5pt]
 	Markus~Rabus\\ [5pt]
 	Sam~Kim\\[5pt]
@@ -3756,7 +3756,7 @@ Sometimes it seems to be impossible to switch the hydraulics on/off from the NOB
 \begin{enumerate}
 	\item Go to the dome.
 	\item Locate the gray 1.5-metre-high \gls{adam} rack (\figref{dome}).
-	\item Locate the  (light blue) power supply switch for \texttt{ADAM power} at the BACK of \gls{adam} (\figref{adam-power}).
+	\item Locate the  (light blue) power supply switch for \texttt{ADAM power} at the BACK of \gls{adam} (\figref{adam-power}, it now has 'Power ADAM' written on it.).
 	\item Unplug the top part and after a short while plug in again. That should reset the power supply.
 	
 \end{enumerate}
@@ -4000,6 +4000,52 @@ If the slit does not open or close, check if urgent mechanical intervention is n
 \subsection{Dome slit and telescope are not aligned}
 For small zenithal angles there is an apparent misalignment between \gls{slit} and telescope orientation as shown on the \gls{rose diagram} on the \gls{tcs} control panel. It is a normal setting since the telescope is not exactly at the center of the \gls{dome}.  If you need to avoid the wind you need to orient the \gls{dome} manually but be weary of vignetting.
 
+
+\subsection{Pointing AND focus error}
+
+If during the pointing test or the first observation  you find that the pointing is off AND the target star is way out of focus you will most likely have a problem with the compressor that provides the air cushion for th M1.  To check if that is the case, first move the telescope to the far north, i.e. Dec=+30 degrees, HA=0 degrees, wait for a few minutes and the try again to point to a target star. If that didn't help, you most likely have a real compressor problem. This is not something the 2p2 TO can solve, so you need to contact Linkes/ESO staff.  Currently, we try to check the status of the compressor (in the hydraulics building just below the 2p2) in the late afternoon (maybe after checking the dome position). If the pressure is off,  an early detection of this problem allows Linkes staff to deal with the compressor BEFORE the night starts. \figref{compressor-pressure} shows what to look for. If you go
+ the hydraulics building from the telescope the first door leads to the compressor room. At the far wall to the right you find the pressure gauge , circled in red in \figref{compressor-pressure}. The 2 black markings show you in which range the pressure should be. If there is no pressure, it means  the current compressor is not working. At the moment ESO doesn't really want us to switch compressors on/off, so the correct procedure would be to contact Linkes.  If you feel comfortable enough you could also try and switch from the faulty compressor to the second one. 
+ 
+ \newpage
+ \procedure{Switch compressor for M1 main mirror}
+ 
+ \begin{enumerate}
+ 	\item   First check again what the pressure on the M1 compressors is (\figref{compressor-pressure}). 
+ 	\item 	Check with of the two compressors is actually running, and may has a warning light on. Warning lights should be displayed at the front of the compressor, \figref{compressor-3-warnings}
+ 	\item First thing to do, power one whichever compressor  you want to use.
+ 	\item Switch the walves (\figref{compressor-walves}) open/close for the 2 compressors, depending on which one failed and which one you want to use.
+ 	\item Switch off the power for the compressor that failed.
+ 	\item Check the pressure  again (point A).
+ 	\item If the pressure is stabilised,  back in the NOB check the pointing and focus. If it is better but not quite  correct, try again moving the telescope to the north, wait a few minutes and check both, pointing and focus again.
+ 	\item If that still doesn't solve the problem it is more serious , and you should probably contact ESO.
+ 	
+ \end{enumerate}
+ 
+ 
+ 
+ \begin{figure}
+ 	\centering
+ 	\includegraphics[width=0.7\linewidth]{tcs/compressor-pressure.jpg}
+ 	\caption{Pressure for the M1 compressor, it has to be between the 2 short black markings on the manometer rim. }
+ 	\label{fig:compressor-pressure}
+ \end{figure}
+ 
+ \begin{figure}
+ 	\centering
+ 	\includegraphics[width=0.7\linewidth]{tcs/compressor-3-warnings.jpg}
+ 	\caption{Front display of compressor.  }
+ 	\label{fig:compressor-3-warnings}
+ \end{figure}
+ 
+ 
+  \begin{figure}
+ 	\centering
+ 	\includegraphics[width=0.7\linewidth]{tcs/compressor-walves.jpg}
+ 	\caption{Walves (long red/ long yellow) of compressor 3 and 7, one needs to be open, the other one closed.  }
+ 	\label{fig:compressor-walves}
+ \end{figure}
+ 
+ 
 \section{GROND issues}
 
 \subsection{GROND startup failed with FIERA stuck in LOADING}
@@ -4007,7 +4053,7 @@ For small zenithal angles there is an apparent misalignment between \gls{slit} a
  
  \begin{enumerate}
  	\item Run grinsStop/grinsStart, followed by the Start-up procedure.
- 	\item $~/bin/HowtoLastResort\_Before*.sh$ followed by  $~/bin/HowtoLastResort\_After2*.sh$. You can run both shell scripts directly, or  copy and paste the individual steps to the command line. The latter will make it easier to check if and when a step fail. After that try Start-up again.\\
+ 	\item $~/bin/HowtoLastResort\_Before*.sh$ followed by  $~/bin/HowtoLastResort\_After2*.sh$. You can run both shell scripts directly, or  copy and paste the individual steps to the command line. The latter will make it easier to check if and when a step fails. After that try Start-up again.\\
  	\item The following procedure is the most time consuming and requires a trip to the telescope. Btw, this was described by Arne on June 16, via  slack, and a print out of it has been put into the \gls{grond} FIERA rack in the VME room.
  		\begin{enumerate}
  			\item If the \gls{grond} Start-up failed, make sure you are in a defined status, e.g. abort the startup procedure, but no active scripts.
@@ -4725,7 +4771,6 @@ dhs computer                 & pipeline                                   & .5ar
 Instrument manager           & ferosmgr, grondmgr, wfimgr                 & pin2$\cdots$\\
 GROND off (grondoff)         & grondmpe                                   & fixed$\cdots$\\
 Workstation administrator    & root                                       & 2be1$\cdots$\\
-Remedy tickets               & 2p2                                        & .5a$\cdots$\\
 Visitor observing tool (vot) & sciops2p2                                  & alwaysB$\cdots$\\
 Dome auxiliary functions     &                                            & .5a$\cdots$\\
 p2 for La Silla (p2ls)       & MPGUtility, MPGDDT                         & MPG@$\cdots$\\
@@ -4734,23 +4779,27 @@ p2 for La Silla (p2ls)       & MPGUtility, MPGDDT                         & MPG@
 \end{tabular}
 \end{table}
 
-\section{Phone numbers}
+\section{Phone numbers/ email}
 \begin{table}
-\caption{Usefull phone numbers}
+\caption{Usefull phone numbers/ emails}
 \label{tab:phone}
 \centering
 \begin{tabular}{lll}
 \hline
-Name                    &  Phone                                            & Service\\
+Name                    &  Phone / email                                           & Service\\
 \hline\hline
 Francisco Duran	        & 5575                                              & IT Paranal \\
 Pablo Cordero           & 3157                                              & IT Santiago \\
 Josefina Urrutia        & 5281                                              & IT Paranal \\
 Javier Alarc\'on        & 3119                                              & IT Santiago \\
+IT-support              & cl-servicedesk@eso.org                            & IT support for direct help with IT issues\\
+Technical support       & ls-tmes@eso.org                                   & Technical support La Silla  \\
  2p2 dome               & 4109                                              & 2p2 dome floor\\
  Jos\'e Orrego          & +56991297177 / +56512272601                       & ESO Reception La Serena\\
  Francisco Tapia        & 4172, +56949910962                                & La Silla Reception\\
- Claudio Espinoza       & +56976957745                                      & OHB \\
+ Claudio Espinoza       & +56976957745                                      & OHB   \\
+ Victor Parra           & vparra@linkes.cl                                  & Linkes \\
+ Demostenes  Kirkman    &  dkirkman@linkes.cl                               & Linkes \\
  Justo Perez            & 4100, +56934245907                                & La Silla Logistics\\
  Ruben Vega             & 4100, +56986700107                                & La Silla Logistics\\
                         & +56998873763                                      & La Silla Logistics/ hospitality\\
