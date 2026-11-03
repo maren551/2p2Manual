@@ -1,0 +1,22 @@
+name: Build LaTeX PDF
+on:
+  push:
+    paths:
+      - '**.tex'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: xu-cheng/latex-action@v3
+        with:
+          root_file: manual-new.tex
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Rebuild PDF"
+          file_pattern: "*.pdf"
