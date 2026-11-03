@@ -266,7 +266,24 @@ If under time pressure, you can also do some day-time calibrations in parallel. 
 %%%%
   \item \label{list:wfistartup}\textbf{\gls{wfi} restart (8 min, in case of problems, see \figref{wfi-restart})}
         \begin{enumerate}
-          \item On the screen \texttt{BOB Wide Field Imager}, go to the \texttt{StartUp} \gls{desktop}.\label{list:wfi1}
+        	
+          \item Since October 2026 there seems to be a problem with the osf2p2StartUp script for WFI (see below). It causes problems with restarting FIERA, as well as the icswsControl (leaving ICS in a "busy" status).  There are 2 solutions to that problem.
+           \begin{itemize}
+           	
+           \item skip WFI startup altogether or
+           \item do the startup using the startup script, but individual command directly on the command line:
+           \begin{enumerate}
+           	\item - opn a terminal on the WFI computer
+           	\item - Stop both the technical and science CCDs : wfinsStopCCDS
+           	\item - Restart CCDs: wfinsStartCCDS
+           	\item - Stop the instrument: wfinsShutDown
+           	\item - For some reason you should now reset the filter wheel (WFI AUx panel)
+           	\item - Restart the instrument: wfinsStartUp
+           	\item - If the logmonitor shows an error for the icswsControl and the ICS panel shows a "busy" status, request a filter change, that usually resets the ICS status
+           	\end{enumerate}
+           \end{itemize}
+           \bigskip
+          \item  If you chose to use the startup script: On the screen \texttt{BOB Wide Field Imager}, go to the \texttt{StartUp} \gls{desktop}.\label{list:wfi1}
           \item In a terminal, \texttt{\gls{osf2p2StartUp} ini WFI F8}, where ini is your initials (\figref{wfisu-launch}).
           \item On the dialog, choose \texttt{DAILY} startup (\figref{wfisu-full}).
           \item Click \texttt{START} on the appearing window (\texttt{ESO220 WEEKLY FULL STARTUP}, see \figref{wfisu-start}). 
