@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: xu-cheng/latex-action@v3
         with:
-          root_file: manual-new.tex
+          root_file: 2p2Manual/manual-new.tex
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Rebuild PDF"
